@@ -1,10 +1,14 @@
 import streamlit as st
 from few_tensorf.opt import *
 import os
-import glob
+# import glob
 from few_tensorf.train import export_mesh
 import pyvista as pv
 from stpyvista import stpyvista
+
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(400, 400))
+display.start()
 
 
 def mesh_extract(log_dir):
@@ -33,7 +37,7 @@ def mesh_extract(log_dir):
         if extract_button:
             export_mesh(args, ckpt_path)
             pv.global_theme.show_scalar_bar = False
-            plotter = pv.Plotter(window_size=[400,400])
+            plotter = pv.Plotter(notebook= True, window_size=[400,400])
             
             obj_file = ckpt_path[:-3]+'.ply'
 

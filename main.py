@@ -1,11 +1,11 @@
 import streamlit as st
-import pandas as pd
-import numpy as np 
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import pandas as pd
+# import numpy as np 
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 import sys
-import pyvista as pv
-from stpyvista import stpyvista
+# import pyvista as pv
+# from stpyvista import stpyvista
 sys.path.insert(5, './')
 from stl_dataset import dataset_mode
 from streamlit_page.train_model.stl_train import *

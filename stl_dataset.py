@@ -1,7 +1,7 @@
-import pyvista as pv
+# import pyvista as pv
 import streamlit as st
-import os 
-from stpyvista import stpyvista
+# import os 
+# from stpyvista import stpyvista
 
 def dataset_mode():
     province_box, feature_box = st.columns(2)

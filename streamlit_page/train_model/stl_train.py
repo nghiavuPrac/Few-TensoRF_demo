@@ -1,7 +1,7 @@
 import streamlit as st
-import numpy as np
+# import numpy as np
 import os
-import glob
+# import glob
 from streamlit_page.train_model.stl_data_preparation import *
 from streamlit_page.train_model.stl_data_visualization import *
 from streamlit_page.train_model.stl_obj_visualization import *

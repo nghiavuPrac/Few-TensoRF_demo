@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-import glob
+# import glob
 from few_tensorf.opt import *
 from few_tensorf.train import render_test
 
