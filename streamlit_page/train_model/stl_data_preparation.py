@@ -433,7 +433,7 @@ f'''
 dataset_name = {dataloader_box}
 datadir = {training_data_dir}
 expname = {exp_name_box}
-basedir = few_tensorf\log
+basedir = {os.path.join('few_tensorf','log')}
 
 #------ Number images ------
 train_idxs    = {tx_train_selection_box}
