@@ -35,12 +35,15 @@ def mesh_extract(log_dir):
         )
 
         if extract_button:
-            export_mesh(args, ckpt_path)
+            obj_file = ckpt_path[:-3]+'.ply'
+            if os.path.exists(obj_file):
+                pass
+            else:        
+                export_mesh(args, ckpt_path)
+
             pv.global_theme.show_scalar_bar = False
             plotter = pv.Plotter(notebook= True, window_size=[400,400])
             
-            obj_file = ckpt_path[:-3]+'.ply'
-
             mesh = pv.read(obj_file)
             
             # st.title(os.path.splitext(os.path.basename(file_name))[0])    
