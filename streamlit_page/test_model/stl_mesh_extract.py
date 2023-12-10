@@ -1,8 +1,8 @@
 import streamlit as st
-from few_nerf.opt import *
+from few_tensorf.opt import *
 import os
 import glob
-from few_nerf.train import export_mesh
+from few_tensorf.train import export_mesh
 import pyvista as pv
 from stpyvista import stpyvista
 
@@ -35,9 +35,8 @@ def mesh_extract(log_dir):
             pv.global_theme.show_scalar_bar = False
             plotter = pv.Plotter(window_size=[400,400])
             
-            obj_file = ckpt_path[:-2]+'.ply'
+            obj_file = ckpt_path[:-3]+'.ply'
 
-            tex_file = os.path.join(obj_dir, object_option, object_name, 'material0.jpeg')                
             mesh = pv.read(obj_file)
             
             # st.title(os.path.splitext(os.path.basename(file_name))[0])    

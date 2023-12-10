@@ -1,8 +1,8 @@
 import streamlit as st
 import os
 import glob
-from few_nerf.opt import *
-from few_nerf.train import render_test
+from few_tensorf.opt import *
+from few_tensorf.train import render_test
 
 
 def rendering(log_dir):
@@ -70,8 +70,7 @@ def rendering(log_dir):
                 if render_button:
                     render_test(args)
 
-                    # images_path = os.path.join(data_dir, dataset_option, dataset_obj_option, dataset_type_option)
-                    images_path = r'few_nerf\log\raw_8_0300\imgs_test_all'
+                    images_path = os.path.join(log_dir, object_option, 'imgs_test_all')
                     image_list = [os.path.join(images_path, iamge_name) for iamge_name in  os.listdir(images_path) if 'png' in iamge_name]
                                         
                     col1,col2 = st.columns(2)

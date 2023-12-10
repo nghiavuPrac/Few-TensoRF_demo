@@ -3,7 +3,7 @@ import os
 import glob
 import time
 from  utils import * 
-from few_nerf.dataLoader.__init__ import *
+from few_tensorf.dataLoader.__init__ import *
 
 
 def data_preparation(data_dir, config_dir):
@@ -433,7 +433,7 @@ f'''
 dataset_name = {dataloader_box}
 datadir = {training_data_dir}
 expname = {exp_name_box}
-basedir = few_nerf\log
+basedir = few_tensorf\log
 
 #------ Number images ------
 train_idxs    = {tx_train_selection_box}

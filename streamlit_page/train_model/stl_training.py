@@ -1,7 +1,7 @@
 import streamlit as st
 import os
-from few_nerf.opt import *
-from few_nerf.train import reconstruction
+from few_tensorf.opt import *
+from few_tensorf.train import reconstruction
 
 
 def training_model(config_dir):

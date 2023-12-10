@@ -3,8 +3,8 @@ import numpy as np
 import os
 import glob
 import configargparse
-from few_nerf.dataLoader.__init__ import *
-from few_nerf.opt import *
+from few_tensorf.dataLoader.__init__ import *
+from few_tensorf.opt import *
 from streamlit_page.test_model.stl_rendering import *
 from streamlit_page.test_model.stl_mesh_extract import *
 
@@ -13,7 +13,9 @@ def test_model():
 
     rendering_tab, mesh_extract_tab = st.tabs(["Rendering", "Mesh extract"])
 
-    log_dir = 'few_nerf\log'
+    log_dir = os.path.join('few_tensorf','log')
+    os.makedirs(log_dir, exist_ok=True)
+    
     with rendering_tab:
         rendering(log_dir)
     
