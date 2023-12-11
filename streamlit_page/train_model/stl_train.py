@@ -7,7 +7,7 @@ from streamlit_page.train_model.stl_data_visualization import *
 from streamlit_page.train_model.stl_obj_visualization import *
 from streamlit_page.train_model.stl_training import *
 def train_model():
-    st.header('Data preparation')
+    st.title('Data preparation')
     
     prepare_data, training, vis_image, vis_obj_3d = st.tabs(["Create config", "Training", "Visualize image", 'Visualize 3d object'])
     
