@@ -28,7 +28,10 @@ def training_model(config_dir):
         with open(os.path.join(args.datadir, f"transforms_train.json"), 'r') as f:
             meta = json.load(f)
 
-        train_idxs = range(1,100)
+        if args.train_idxs:
+            train_idxs = args.train_idxs
+        else:
+            train_idxs = range(0, len(meta['frames'])-1)
 
         image_list = defaultdict(dict)
         for i in train_idxs:
@@ -47,8 +50,12 @@ def training_model(config_dir):
                 camera_angle_y = camera_angle_x
             camera_angles = [camera_angle_x, camera_angle_y]
 
-            file_path = frame['file_path'].split('.')[-1]
-            image_path = args.datadir + file_path + '.png'
+            if args.dataset_name == "blender":
+                file_path = frame['file_path'].split('.')[-1]
+                image_path = os.path.join(args.datadir, f"{frame['file_path']}.png")
+            if args.dataset_name == "human":
+                file_path = frame['file_path'].split('\\')[-1].split('.')[-2]
+                image_path = os.path.join(args.datadir, "train",file_path+'.png')
             formatted_path = os.path.join(*image_path.split('/'))
             
             file_path = formatted_path

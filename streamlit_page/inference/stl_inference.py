@@ -165,11 +165,11 @@ def inference():
         with open(os.path.join(args.datadir, f"transforms_{dataset_type}.json"), 'r') as f:
             meta = json.load(f)
 
-        # train_idxs = range(1,50)
-        train_idxs = range(1,len(meta['frames']))
+        # render_idxs = range(1,50)
+        render_idxs = range(0, len(meta['frames'])-1)
 
         image_list = defaultdict(dict)
-        for i in train_idxs:
+        for i in render_idxs:
             frame = meta['frames'][i]
             transform_frames = frame['transform_matrix']
 
@@ -187,9 +187,8 @@ def inference():
 
             if args.dataset_name == "blender":
                 file_path = frame['file_path'].split('.')[-1]
-
                 image_path = os.path.join(args.datadir, f"{frame['file_path']}.png")
-            if args.dataset_name == "own_data":
+            if args.dataset_name == "human":
                 file_path = frame['file_path'].split('\\')[-1].split('.')[-2]
                 image_path = os.path.join(args.datadir, dataset_type,file_path+'.png')
 
