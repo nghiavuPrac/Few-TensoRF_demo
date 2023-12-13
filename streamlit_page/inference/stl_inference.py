@@ -165,7 +165,8 @@ def inference():
         with open(os.path.join(args.datadir, f"transforms_{dataset_type}.json"), 'r') as f:
             meta = json.load(f)
 
-        train_idxs = range(1,100)
+        # train_idxs = range(1,50)
+        train_idxs = range(1,len(meta['frames']))
 
         image_list = defaultdict(dict)
         for i in train_idxs:
@@ -184,8 +185,14 @@ def inference():
                 camera_angle_y = camera_angle_x
             camera_angles = [camera_angle_x, camera_angle_y]
 
-            file_path = frame['file_path'].split('.')[-1]
-            image_path = args.datadir + file_path + '.png'
+            if args.dataset_name == "blender":
+                file_path = frame['file_path'].split('.')[-1]
+
+                image_path = os.path.join(args.datadir, f"{frame['file_path']}.png")
+            if args.dataset_name == "own_data":
+                file_path = frame['file_path'].split('\\')[-1].split('.')[-2]
+                image_path = os.path.join(args.datadir, dataset_type,file_path+'.png')
+
             formatted_path = os.path.join(*image_path.split('/'))
             
             file_path = formatted_path

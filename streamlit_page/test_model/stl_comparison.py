@@ -24,38 +24,41 @@ def comparison(log_dir):
             predicted_images_folder = os.path.join(log_dir, log_choice, 'imgs_test_all', 'prediction')
             gt_images_folder = os.path.join(log_dir, log_choice, 'imgs_test_all', 'ground_truth')
 
-            try:
-                predicted_image_paths = os.listdir(predicted_images_folder)
-                image_metric, image_tab = st.tabs(['Metric', 'Image'])
+            # try:
+            predicted_image_paths = os.listdir(predicted_images_folder)
+            image_metric, image_tab = st.tabs(['Metric', 'Image'])
 
-                with image_metric:
+            with image_metric:
+                try:
                     history = dict(numpy.load(os.path.join(log_dir, log_choice, 'history.npz')))
                     history_pd = pd.DataFrame.from_dict(history)
                     st.line_chart(history, x='iteration', y=['train_psnr', 'test_psnr'])
+                except:
+                    pass
 
-                with image_tab:
-                    image_choice = st.selectbox(
-                        "Select image", 
-                        predicted_image_paths, 
-                        key='image_choice', 
-                        index=None,
-                    )
+            with image_tab:
+                image_choice = st.selectbox(
+                    "Select image", 
+                    predicted_image_paths, 
+                    key='image_choice', 
+                    index=None,
+                )
 
-                    if image_choice:
-                        predicted_image = Image.open(os.path.join(predicted_images_folder, image_choice))
-                        gt_image = Image.open(os.path.join(gt_images_folder, image_choice))
+                if image_choice:
+                    predicted_image = Image.open(os.path.join(predicted_images_folder, image_choice))
+                    gt_image = Image.open(os.path.join(gt_images_folder, image_choice))
 
-                        image_comparison(
-                            img1=gt_image,
-                            img2=predicted_image,
-                            label1="Ground truth",
-                            label2="Prediction",
-                            show_labels=True,
-                            make_responsive=True,
-                            in_memory=True,
-                        )        
-            except:
-                st.error("The predicted image folder doesn't exist", icon="🚨")
+                    image_comparison(
+                        img1=gt_image,
+                        img2=predicted_image,
+                        label1="Ground truth",
+                        label2="Prediction",
+                        show_labels=True,
+                        make_responsive=True,
+                        in_memory=True,
+                    )        
+            # except:
+            #     st.error("The predicted image folder doesn't exist", icon="🚨")
     
     with cp_log_tab:
 
